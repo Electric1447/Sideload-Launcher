@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +26,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         protected void onPostExecute (PackageInfo[] apps) {
             mListView.setOnItemClickListener(MainActivity.this);
-            mListView.setAdapter(new ApplicationAdapter(MainActivity.this, R.layout.grid_item, apps));
+            mListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
+                    ((TextView)findViewById(R.id.appLabel)).setText(apps[position].getName());
+                }
+
+                @Override
+                public void onNothingSelected (AdapterView<?> parent) {
+                }
+            });
+            mListView.setAdapter(new ApplicationAdapter(MainActivity.this, R.layout.recycler_item, apps));
         }
 
     };
@@ -79,5 +90,4 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             e.printStackTrace();
         }
     }
-
 }
