@@ -8,8 +8,8 @@ android {
         applicationId "eparon.sideloadlauncher"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 100
-        versionName "1.0"
+        versionCode 101
+        versionName "1.0.1"
 
         resConfigs "en"
     }
